@@ -59,7 +59,7 @@ void Ship::repairHull(int amount)
 void Ship::damageHull(int amount)
 {
 	hull -= amount;
-	if (hull > 0)
+	if (hull < 0)
 	{
 		hull = 0;
 	}

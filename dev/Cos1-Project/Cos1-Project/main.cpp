@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "Ship.h"
+#include "Game.h"
 
 int main()
 {
@@ -12,8 +13,11 @@ int main()
 	playerShip.damageHull(15);
 	playerShip.addCredits(250);
 
-	std::cout << "\nAFTER Updates:\n";
+	std::cout << "\nAFTER Updates:\n"; // updated status
 	playerShip.displayStatus();
+
+	Game game;
+	game.start();
 
 	return 0;
 

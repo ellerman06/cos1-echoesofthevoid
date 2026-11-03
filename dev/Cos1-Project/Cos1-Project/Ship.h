@@ -22,6 +22,4 @@ public:
 	void addCredits(int amount);
 	void spendCredits(int amount);
 
-
-
 };
