@@ -3,6 +3,7 @@
 
 void Game::start()
 {
+	intialPlanets();
 	displayMainMenu();
 }
 
@@ -31,7 +32,7 @@ void Game::displayMainMenu()
 			playerShip.displayStatus();
 			break;
 		case 2:
-			std::cout << "\nTravel sytem coming soon. . . \n";
+			displayPlanets();
 		case 3: 
 			std::cout<< "\nTrading sytem coming soon. . . \n";
 		case 4: 
@@ -44,4 +45,23 @@ void Game::displayMainMenu()
 		}
 
 	}
+}
+
+void Game::intialPlanets()
+{
+	planets.push_back(Planet("Earth Station", 5, 10));
+	planets.push_back(Planet("Mars Colony", 3, 15));
+	planets.push_back(Planet("Titan Outpost", 7, 5));
+	planets.push_back(Planet("Nebula Station", 10, 20));
+}
+void Game::displayPlanets()
+{
+	std::cout << "\n===== DESTINATIONS =====\n";
+	
+	for (int i = 0; i < planets.size(); i++)
+	{
+		std::cout << i + 1 << ". " << planets[i].getName() << std::endl;
+	}
+	std::cout << std::endl; 
+
 }
