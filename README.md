@@ -43,8 +43,21 @@ Each week I will summarize my milestone activity and progress by writing a stand
 <br>
 
 ### Week 1
+STAND UP
+What did you work on this past week?
 
-Replace this paragraph with your stand up for this week. Use the prompts above to summarize your most recent milestone activity and work.
+This week I finalized my project idea, Echoes of the Void, a space exploration game. I set up my GitHub repository, organized my project board with issues and milestones, and implemented the Ship class with fuel, hull, and credit tracking.
+
+What obstacles did you encounter, and how are you addressing them?
+
+The biggest challenge was determining the project's scope. I wanted to create something interesting without making it overly complex. Another challenge has been understanding exactly how much detail should be included in the README and documentation requirements. I am addressing them by going back and re-watching parts of our first lab and a bit of external research. 
+
+What is something you learned, improved, or "leveled up" on this week?
+ I gained experience using GitHub Issues and a project board to organize development tasks and track progress.
+
+What do you plan to prioritize before your next milestone?
+
+Before the next milestone, I plan to complete the main menu system and begin building the Game class that will control gameplay flow. I also plan to continue improving the README documentation so it reflects the project's design and progress.
 
 ### Week 2
 
