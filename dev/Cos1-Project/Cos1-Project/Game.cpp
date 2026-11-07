@@ -17,6 +17,8 @@ void Game::displayMainMenu()
 		std::cout << "          ECHOES OF THE VOID\n";
 		std::cout <<
 			"=====================================\n";
+
+		std::cout << "Current Location: : " << currentLocation << "\n\n";
 		std::cout << "1. View Ship Status\n";
 		std::cout << "2. Travel\n";
 		std::cout << "3. Trade\n";
@@ -32,8 +34,9 @@ void Game::displayMainMenu()
 			playerShip.displayStatus();
 			break;
 		case 2:
-			displayPlanets();
+			travel();
 		case 3: 
+
 			std::cout<< "\nTrading sytem coming soon. . . \n";
 		case 4: 
 			std::cout<< "\nRepair sytem coming soon. . . \n";
@@ -53,6 +56,8 @@ void Game::intialPlanets()
 	planets.push_back(Planet("Mars Colony", 3, 15));
 	planets.push_back(Planet("Titan Outpost", 7, 5));
 	planets.push_back(Planet("Nebula Station", 10, 20));
+
+	currentLocation = "Earth Station";
 }
 void Game::displayPlanets()
 {
@@ -64,4 +69,28 @@ void Game::displayPlanets()
 	}
 	std::cout << std::endl; 
 
+}
+
+void Game::travel()
+{
+	if (playerShip.getFuel() < 15) //guard clause 
+	{
+		std::cout << "\nNot enough fuel to travel!\n";
+		return;
+	}
+	int destination;
+	displayPlanets();
+	std::cout << "Traveler, please select a destination: ";
+	std::cin >> destination;
+	if (destination >= 1 && destination <= planets.size())
+	{
+		currentLocation = planets[destination - 1].getName();
+		playerShip.useFuel(15); //travel costs
+		std::cout << "\nTravel succesfull!\n";
+		std::cout << "Current Location: " << currentLocation << std::endl; 
+	}
+	else
+	{
+		std::cout << "\nInvalid destination.\n";
+	}
 }

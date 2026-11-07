@@ -11,10 +11,13 @@ private:
 
 	std::vector<Planet> planets; 
 
+	std::string currentLocation; 
+
 public:
 	void start();
 	void displayMainMenu();
 
 	void intialPlanets();
 	void displayPlanets();
+	void travel();
 };
