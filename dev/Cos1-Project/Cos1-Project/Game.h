@@ -2,12 +2,14 @@
 #include "Ship.h"
 #include "Planet.h"
 #include <vector>
+#include "Event.h"
 
 class Game
 {
 
 private:
 	Ship playerShip;
+	Event event;
 
 	std::vector<Planet> planets; 
 

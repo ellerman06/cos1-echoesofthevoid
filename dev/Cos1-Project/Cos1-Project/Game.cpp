@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Game.h"
+#include "Planet.h"
 
 void Game::start()
 {
@@ -75,7 +76,7 @@ void Game::travel()
 {
 	if (playerShip.getFuel() < 15) //guard clause 
 	{
-		std::cout << "\nNot enough fuel to travel!\n";
+		std::cout << "\nFuel too low, need to stop by the nearest moon to fill up!\n";
 		return;
 	}
 	int destination;
@@ -84,10 +85,19 @@ void Game::travel()
 	std::cin >> destination;
 	if (destination >= 1 && destination <= planets.size())
 	{
+		if (currentLocation == planets[destination - 1].getName())
+		{
+			std::cout << "\n You are already there, fuel is not cheap, Captain!\n";
+			return;
+		}
 		currentLocation = planets[destination - 1].getName();
 		playerShip.useFuel(15); //travel costs
 		std::cout << "\nTravel succesfull!\n";
+
+		event.triggerRandomEvent(playerShip);
+
 		std::cout << "Current Location: " << currentLocation << std::endl; 
+		std::cout << "Fuel Remaining: " << playerShip.getFuel() << std::endl;
 	}
 	else
 	{
