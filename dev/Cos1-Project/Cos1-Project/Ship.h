@@ -15,11 +15,13 @@ public:
 	int getHull() const;
 	int getCredits() const;
 
+
 	void addFuel(int amount);
 	void useFuel(int amount);
 	void repairHull(int amount);
 	void damageHull(int amount);
 	void addCredits(int amount);
 	void spendCredits(int amount);
+
 
 };

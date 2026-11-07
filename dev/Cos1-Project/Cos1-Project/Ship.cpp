@@ -1,5 +1,7 @@
 #include "Ship.h"
 #include "iostream"
+#include "Game.h"
+
 
 Ship::Ship()
 {
@@ -14,7 +16,7 @@ void Ship::displayStatus() const
 	std::cout << "Fuel: " << fuel << std::endl;
 	std::cout << "Hull: " << hull << std::endl;
 	std::cout << "Credits: " << credits << std::endl;
-	std::cout << "=========================\n";
+	
 
 }
 
@@ -32,6 +34,7 @@ int Ship::getCredits() const
 {
 	return credits;
 }
+
 
 void Ship::addFuel(int amount)
 {

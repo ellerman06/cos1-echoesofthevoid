@@ -22,4 +22,5 @@ public:
 	void intialPlanets();
 	void displayPlanets();
 	void travel();
+	void repairShip();
 };

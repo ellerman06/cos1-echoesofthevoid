@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "Planet.h"
 
+
 void Game::start()
 {
 	intialPlanets();
@@ -37,14 +38,16 @@ void Game::displayMainMenu()
 		case 2:
 			travel();
 		case 3: 
-
 			std::cout<< "\nTrading sytem coming soon. . . \n";
 		case 4: 
-			std::cout<< "\nRepair sytem coming soon. . . \n";
+			repairShip();
+			break;
 		case 5: 
 			std::cout<< "\nSafe travels, Captain.\n";
+			break;
 		case 6: 
 			std::cout<< "\nInvalid Choice. \n";
+			break;
 
 		}
 
@@ -103,4 +106,21 @@ void Game::travel()
 	{
 		std::cout << "\nInvalid destination.\n";
 	}
+}
+void Game::repairShip()
+{
+	const int repairCost = 50;
+	const int repairAmount = 25;
+	if (playerShip.getCredits() < repairCost)
+	{
+		std::cout << "\nNot enough credits.\n";
+		return;
+		playerShip.spendCredits(repairCost);
+		playerShip.repairHull(repairCost);
+
+		std::cout << "\nShip repaired!\n";
+		std::cout << "Hull +" << repairAmount << std::endl;
+		std::cout << "Credits -" << repairCost << std::endl;
+	}
+
 }
