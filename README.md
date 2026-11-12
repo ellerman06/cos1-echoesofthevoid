@@ -63,7 +63,7 @@ Before the next milestone, I plan to complete the main menu system and begin bui
 
 ## Week 2
 
-\*\*\*1. Progress Update\*\*\*
+ 1. Progress Update
 
 This week I continued developing my Echoes of the Void game. I completed the Ship, Planet, Event, and Game classes and implemented the main menu system.
 
@@ -73,7 +73,7 @@ Next, I plan to complete the Repair System and begin working on a Trading System
 
 
 
-\*\*\*2. Project Progress\*\*\*
+2. Project Progress
 
 The most complete feature currently in my program is the Travel System.
 
@@ -81,7 +81,7 @@ Players begin at Earth Station and can choose from multiple destinations, includ
 
 
 
-\*\*\*3. Usability Improvements\*\*\*
+3. Usability Improvements
 
 One usability improvement I have focused on is providing clearer feedback to the player. Error messages also help guide the user, such as notifying them when they attempt to travel without enough fuel or select an invalid destination.
 
@@ -89,7 +89,7 @@ This week I also improved menu navigation and added messages that explain why ce
 
 
 
-\*\*\*4. Level Up Goal\*\*\*
+4. Level Up Goal
 
 This week I am focusing on improving my understanding of object-oriented programming and debugging. As the project grows, I am learning how different classes should interact and how to organize code more effectively.
 
