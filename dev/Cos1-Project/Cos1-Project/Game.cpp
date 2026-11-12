@@ -32,25 +32,24 @@ void Game::displayMainMenu()
 
 		switch (choice)
 		{
-		case 1: 
+		case 1:
 			playerShip.displayStatus();
 			break;
 		case 2:
-			travel();
-		case 3: 
-			std::cout<< "\nTrading sytem coming soon. . . \n";
-		case 4: 
-			repairShip();
+			  travel();
+			 break;
+		case 3:
+			std::cout << "\nTrading sytem coming soon. . . \n";
 			break;
-		case 5: 
-			std::cout<< "\nSafe travels, Captain.\n";
+		case 4:
+			  repairShip();
+			 break;
+		case 5:
+			std::cout << "\nSafe travels, Captain.\n";
 			break;
-		case 6: 
-			std::cout<< "\nInvalid Choice. \n";
+		default: std::cout << "\nInvalid Choice\n";
 			break;
-
 		}
-
 	}
 }
 
@@ -115,12 +114,11 @@ void Game::repairShip()
 	{
 		std::cout << "\nNot enough credits.\n";
 		return;
+	}
 		playerShip.spendCredits(repairCost);
-		playerShip.repairHull(repairCost);
+		playerShip.repairHull(repairAmount);
 
 		std::cout << "\nShip repaired!\n";
 		std::cout << "Hull +" << repairAmount << std::endl;
 		std::cout << "Credits -" << repairCost << std::endl;
-	}
-
 }
