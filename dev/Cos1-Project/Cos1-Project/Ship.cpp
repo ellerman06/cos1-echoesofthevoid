@@ -14,7 +14,16 @@ void Ship::displayStatus() const
 {
 	std::cout << "\n===== SHIP STATUS ======\n";
 	std::cout << "Fuel: " << fuel << std::endl;
+	if (fuel <= 20)
+	{
+		std::cout << "WARNING: Fuel Critically LOW!" << std::endl;
+	}
 	std::cout << "Hull: " << hull << std::endl;
+	if (hull <= 25)
+	{
+		std::cout << "WARNING: Hull Integrity Critical!" << std::endl;
+	}
+
 	std::cout << "Credits: " << credits << std::endl;
 	
 

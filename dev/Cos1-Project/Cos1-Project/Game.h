@@ -24,4 +24,7 @@ public:
 	void travel();
 	void repairShip();
 	void trade();
+	void checkWinCondition();
+	void checkLoseCondition();
+
 };

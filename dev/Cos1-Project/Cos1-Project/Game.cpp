@@ -50,6 +50,8 @@ void Game::displayMainMenu()
 		default: std::cout << "\nInvalid Choice\n";
 			break;
 		}
+		checkLoseCondition();
+		checkWinCondition();
 	}
 }
 
@@ -169,5 +171,40 @@ void Game::trade()
 		break;
 	default:
 		std::cout << "\nInvalid choice.\n";
+	}
+}
+
+void Game::checkWinCondition()
+{
+	if (currentLocation == "Nebula Station" && playerShip.getCredits() >= 1000)
+	{
+		std::cout << "\n=============================\n";
+		std::cout << "                 VICTORY\n";
+		std::cout << "\n=============================\n";
+		std::cout << "You reached Nebula Station.\n";
+		std::cout << "With 1000+ credits.\n\n";
+		std::cout << "Congratulations, Captain!";
+		exit(0);
+
+	}
+}
+
+void Game::checkLoseCondition()
+{
+	if (playerShip.getHull() <= 0)
+	{
+		std::cout << "\n=============================\n";
+		std::cout << "                 GAME OVER\n";
+		std::cout << "\n=============================\n";
+		std::cout << "Your ship was destroyed.\n";
+		exit(0);
+	}
+	if (playerShip.getFuel() <= 0)
+	{
+		std::cout << "\n=============================\n";
+		std::cout << "                 GAME OVER\n";
+		std::cout << "\n=============================\n";
+		std::cout << "You have ran out of fuel!\n";
+		exit(0);
 	}
 }
