@@ -39,7 +39,7 @@ void Game::displayMainMenu()
 			  travel();
 			 break;
 		case 3:
-			std::cout << "\nTrading sytem coming soon. . . \n";
+			trade();
 			break;
 		case 4:
 			  repairShip();
@@ -121,4 +121,53 @@ void Game::repairShip()
 		std::cout << "\nShip repaired!\n";
 		std::cout << "Hull +" << repairAmount << std::endl;
 		std::cout << "Credits -" << repairCost << std::endl;
+}
+
+void Game::trade()
+{
+	const int fuelCost = 10; 
+	const int fuelAmount = 5;
+
+	int choice;
+
+	std::cout << "\n======== SPACE PORT MARKET ========\n";
+	std::cout << "Fuel Price: " << fuelCost << "\nCredits = " << fuelAmount << " Fuel\n";
+
+	std::cout << "\nCredits: " << playerShip.getCredits() << std::endl; ;
+	std::cout << "Fuel: " << playerShip.getFuel() << std::endl;
+
+	std::cout << "\n1. Buy Fuel?\n";
+	std::cout << "\n2. Leave Market!\n";
+
+	std::cout << "\nChoice: ";
+	std::cin >> choice; 
+
+	switch (choice)
+	{
+	case 1:
+		if (playerShip.getFuel() == 100)
+		{
+			std::cout << "\nFuel tanks are already full.\n";
+			return;
+		}
+		if (playerShip.getCredits() < fuelCost)
+		{
+			std::cout << "\nNot enough credits\n";
+			return;
+		}
+
+		playerShip.spendCredits(fuelCost);
+		playerShip.addFuel(fuelAmount);
+
+		std::cout << "\nFuel purchased!\n";
+		std::cout << "Fuel +" << fuelAmount << std::endl;
+		std::cout << "Credits -" << fuelCost << std::endl;
+
+		break;
+	case 2:
+		std::cout << "\nLeaving market.\n";
+		break;
+	default:
+		std::cout << "\nInvalid choice.\n";
+	}
 }

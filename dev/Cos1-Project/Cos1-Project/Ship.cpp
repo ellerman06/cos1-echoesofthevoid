@@ -39,6 +39,10 @@ int Ship::getCredits() const
 void Ship::addFuel(int amount)
 {
 	fuel += amount;
+	if (fuel > 100)
+	{
+		fuel = 100; 
+	}
 }
 
 void Ship::useFuel(int amount)

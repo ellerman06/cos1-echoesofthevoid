@@ -23,4 +23,5 @@ public:
 	void displayPlanets();
 	void travel();
 	void repairShip();
+	void trade();
 };
