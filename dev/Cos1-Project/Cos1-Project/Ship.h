@@ -23,5 +23,10 @@ public:
 	void addCredits(int amount);
 	void spendCredits(int amount);
 
+	void setFuel(int fuel);
+	void setHull(int hull);
+	void setCredits(int credits);
+
+
 
 };

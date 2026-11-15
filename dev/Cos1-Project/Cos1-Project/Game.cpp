@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Game.h"
 #include "Planet.h"
+#include <fstream>
 
 
 void Game::start()
@@ -207,4 +208,29 @@ void Game::checkLoseCondition()
 		std::cout << "You have ran out of fuel!\n";
 		exit(0);
 	}
+}
+
+void Game::saveGame()
+{
+	std::ofstream saveFile("savegame.txt");
+	if (!saveFile)
+	{
+		std::cout << "\nUnable to save game.\n";
+		return;
+	}
+	saveFile << playerShip.getFuel() << std::endl;
+	saveFile << playerShip.getHull() << std::endl;
+	saveFile << playerShip.getCredits() << std::endl;
+	saveFile << currentLocation << std::endl;
+	saveFile.close();
+	
+	std::cout << "\Game saved successfully!\n";
+}
+
+void Game::loadGame()
+{
+
+
+
+
 }

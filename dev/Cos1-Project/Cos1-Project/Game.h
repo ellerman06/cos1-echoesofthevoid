@@ -26,5 +26,8 @@ public:
 	void trade();
 	void checkWinCondition();
 	void checkLoseCondition();
+	void saveGame();
+	void loadGame();
+
 
 };

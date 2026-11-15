@@ -94,3 +94,18 @@ void Ship::spendCredits(int amount)
 		credits = 0; 
 	}
 }
+
+void Ship::setFuel(int fuel)
+{
+	this->fuel = fuel; 
+}
+
+void Ship::setHull(int hull)
+{
+	this->hull = hull;
+}
+
+void Ship::setCredits(int credits)
+{
+	this->credits = credits;
+}
