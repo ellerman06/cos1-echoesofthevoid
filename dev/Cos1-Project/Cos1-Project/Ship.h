@@ -27,6 +27,4 @@ public:
 	void setHull(int hull);
 	void setCredits(int credits);
 
-
-
 };
