@@ -2,7 +2,7 @@
     - Implemented a travel system that allows players to travel between planets.
     - Added fuel consumption and location tracking
     - Added trading and refueling system   
-    - Implemented Load/Save fuctionalbility
+    - Implemented Load/Save fuctionality
     - Added Win/Lose Conditions 
 
 - 🧱 Updates to your system design
@@ -15,7 +15,7 @@
 - Added input validation using getline(), stoi(), and try/catch.
 - Improved menu navigation and user feedback
 - Condensed duplicate code where possible
-- Organized fuctionalbility between classes 
+- Organized fuctionality between classes 
     
 - 💭 What you changed and why
 Echoes of the Void has evolved form a basic project idea into a playable space exploration game! New systems were added to create a playable gameplay loop, involving travel, resource management, random events, repairs, trading, and game progression, improved input validation were also implemented to make the program more reliable and easier to maintain in the long run. 
