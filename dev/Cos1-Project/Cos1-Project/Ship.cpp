@@ -14,7 +14,16 @@ void Ship::displayStatus() const
 {
 	std::cout << "\n===== SHIP STATUS ======\n";
 	std::cout << "Fuel: " << fuel << std::endl;
+	if (fuel <= 20)
+	{
+		std::cout << "WARNING: Fuel Critically LOW!" << std::endl;
+	}
 	std::cout << "Hull: " << hull << std::endl;
+	if (hull <= 25)
+	{
+		std::cout << "WARNING: Hull Integrity Critical!" << std::endl;
+	}
+
 	std::cout << "Credits: " << credits << std::endl;
 	
 
@@ -39,6 +48,10 @@ int Ship::getCredits() const
 void Ship::addFuel(int amount)
 {
 	fuel += amount;
+	if (fuel > 100)
+	{
+		fuel = 100; 
+	}
 }
 
 void Ship::useFuel(int amount)
@@ -80,4 +93,19 @@ void Ship::spendCredits(int amount)
 	{
 		credits = 0; 
 	}
+}
+
+void Ship::setFuel(int fuel)
+{
+	this->fuel = fuel; 
+}
+
+void Ship::setHull(int hull)
+{
+	this->hull = hull;
+}
+
+void Ship::setCredits(int credits)
+{
+	this->credits = credits;
 }

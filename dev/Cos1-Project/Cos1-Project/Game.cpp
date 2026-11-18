@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Game.h"
 #include "Planet.h"
+#include <fstream>
+#include <string>
 
 
 void Game::start()
@@ -25,10 +27,22 @@ void Game::displayMainMenu()
 		std::cout << "2. Travel\n";
 		std::cout << "3. Trade\n";
 		std::cout << "4. Repair Ship\n";
-		std::cout << "5. Exit\n";
+		std::cout << "5. Save Game\n";
+		std::cout << "6. Load Game\n";
+		std::cout << "7. Exit\n";
 		
+		std::string input;
 		std::cout << "\nChoice: ";
-		std::cin >> choice; 
+		std::getline(std::cin, input);
+		try
+		{
+			choice = std::stoi(input);
+		}
+		catch(...)
+		{
+			std::cout << "\nInvalid Choice.\n";
+			continue; 
+		}
 
 		switch (choice)
 		{
@@ -39,17 +53,25 @@ void Game::displayMainMenu()
 			  travel();
 			 break;
 		case 3:
-			std::cout << "\nTrading sytem coming soon. . . \n";
+			trade();
 			break;
 		case 4:
 			  repairShip();
 			 break;
 		case 5:
-			std::cout << "\nSafe travels, Captain.\n";
+			
+			break;
+		case 6:
+			saveGame();
+			break;
+		case 7:
+			loadGame();
 			break;
 		default: std::cout << "\nInvalid Choice\n";
 			break;
 		}
+		checkLoseCondition();
+		checkWinCondition();
 	}
 }
 
@@ -60,7 +82,8 @@ void Game::intialPlanets()
 	planets.push_back(Planet("Titan Outpost", 7, 5));
 	planets.push_back(Planet("Nebula Station", 10, 20));
 
-	currentLocation = "Earth Station";
+	currentPlanet = &planets[0];
+	currentLocation = currentPlanet->getName();
 }
 void Game::displayPlanets()
 {
@@ -82,9 +105,20 @@ void Game::travel()
 		return;
 	}
 	int destination;
+	std::string input;
 	displayPlanets();
 	std::cout << "Traveler, please select a destination: ";
-	std::cin >> destination;
+	std::getline(std::cin, input);
+
+	try
+	{
+		destination = std::stoi(input);
+	}
+	catch (...)
+	{
+		std::cout << "\nInvalid destination.\n";
+		return;
+	}
 	if (destination >= 1 && destination <= planets.size())
 	{
 		if (currentLocation == planets[destination - 1].getName())
@@ -92,7 +126,9 @@ void Game::travel()
 			std::cout << "\n You are already there, fuel is not cheap, Captain!\n";
 			return;
 		}
-		currentLocation = planets[destination - 1].getName();
+		currentPlanet = &planets[destination - 1];
+		currentLocation = currentPlanet->getName();
+
 		playerShip.useFuel(15); //travel costs
 		std::cout << "\nTravel succesfull!\n";
 
@@ -121,4 +157,150 @@ void Game::repairShip()
 		std::cout << "\nShip repaired!\n";
 		std::cout << "Hull +" << repairAmount << std::endl;
 		std::cout << "Credits -" << repairCost << std::endl;
+}
+
+void Game::trade()
+{
+	const int fuelCost = 10; 
+	const int fuelAmount = 5;
+
+	std::cout << "\n======== SPACE PORT MARKET ========\n";
+	std::cout << "Fuel Price: " << fuelCost << "\nCredits = " << fuelAmount << " Fuel\n";
+
+	std::cout << "\nCredits: " << playerShip.getCredits() << std::endl; ;
+	std::cout << "Fuel: " << playerShip.getFuel() << std::endl;
+
+	std::cout << "\n1. Buy Fuel?\n";
+	std::cout << "\n2. Leave Market!\n";
+
+	
+	int choice;
+	std::string input;
+	std::cout << "\nChoice: ";
+
+
+	std::getline(std::cin, input);
+	try
+	{
+		choice = std::stoi(input);
+	}
+	catch (...)
+	{
+		std::cout << "\nInvalid Choice.\n";
+		return;
+	}
+
+
+	switch (choice)
+	{
+	case 1:
+		if (playerShip.getFuel() == 100)
+		{
+			std::cout << "\nFuel tanks are already full.\n";
+			return;
+		}
+		if (playerShip.getCredits() < fuelCost)
+		{
+			std::cout << "\nNot enough credits\n";
+			return;
+		}
+
+		playerShip.spendCredits(fuelCost);
+		playerShip.addFuel(fuelAmount);
+
+		std::cout << "\nFuel purchased!\n";
+		std::cout << "Fuel +" << fuelAmount << std::endl;
+		std::cout << "Credits -" << fuelCost << std::endl;
+
+		break;
+	case 2:
+		std::cout << "\nLeaving market.\n";
+		break;
+	default:
+		std::cout << "\nInvalid choice.\n";
+	}
+}
+
+void Game::checkWinCondition()
+{
+	if (currentLocation == "Nebula Station" && playerShip.getCredits() >= 1000)
+	{
+		std::cout << "\n=============================\n";
+		std::cout << "                 VICTORY\n";
+		std::cout << "\n=============================\n";
+		std::cout << "You reached Nebula Station.\n";
+		std::cout << "With 1000+ credits.\n\n";
+		std::cout << "Congratulations, Captain!";
+		exit(0);
+
+	}
+}
+
+void Game::checkLoseCondition()
+{
+	if (playerShip.getHull() <= 0)
+	{
+		std::cout << "\n=============================\n";
+		std::cout << "                 GAME OVER\n";
+		std::cout << "\n=============================\n";
+		std::cout << "Your ship was destroyed.\n";
+		exit(0);
+	}
+	if (playerShip.getFuel() <= 0)
+	{
+		std::cout << "\n=============================\n";
+		std::cout << "                 GAME OVER\n";
+		std::cout << "\n=============================\n";
+		std::cout << "You have ran out of fuel!\n";
+		exit(0);
+	}
+}
+
+void Game::saveGame()
+{
+	std::ofstream saveFile("savegame.txt");
+	if (!saveFile)
+	{
+		std::cout << "\nUnable to save game.\n";
+		return;
+	}
+	saveFile << playerShip.getFuel() << std::endl;
+	saveFile << playerShip.getHull() << std::endl;
+	saveFile << playerShip.getCredits() << std::endl;
+	saveFile << currentLocation << std::endl;
+	saveFile.close();
+	
+	std::cout << "\Game saved successfully!\n";
+}
+
+void Game::loadGame()
+{
+	std::ifstream loadFile("savegame.txt");
+	return;
+	if (!loadFile)
+	{
+		std::cout << "\nNo save file found.\n";
+		return;
+	}
+	int fuel; 
+	int hull;
+	int credits;
+	std::string location;
+	loadFile >> fuel;
+	loadFile >> hull;
+	loadFile >> credits; 
+	loadFile.ignore(); // skip leftover 
+
+	std::getline(loadFile, location);
+
+	playerShip.setFuel(fuel);
+	playerShip.setHull(hull);
+	playerShip.setCredits(credits);
+
+	currentLocation = location; 
+
+	loadFile.close();
+
+	std::cout << "\nGame loaded successfully!\n";
+
 }

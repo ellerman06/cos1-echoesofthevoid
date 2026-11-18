@@ -12,8 +12,8 @@ private:
 	Event event;
 
 	std::vector<Planet> planets; 
-
-	std::string currentLocation; 
+	Planet* currentPlanet;
+    std::string currentLocation; 
 
 public:
 	void start();
@@ -23,4 +23,11 @@ public:
 	void displayPlanets();
 	void travel();
 	void repairShip();
+	void trade();
+	void checkWinCondition();
+	void checkLoseCondition();
+	void saveGame();
+	void loadGame();
+
+
 };
