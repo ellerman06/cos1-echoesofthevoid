@@ -269,8 +269,7 @@ void Game::checkWinCondition()
 		std::cout << "You reached Nebula Station.\n";
 		std::cout << "With 1000+ credits.\n\n";
 		std::cout << "Congratulations, Captain!";
-		std::cout << "\nYour legacy among the stars\n:";
-		std::cout << "\nwill be remembered.\n:";
+		std::cout << "\nYour legacy among the stars will be remembered.\n";
 		std::cout << "\n=============================\n";
 
 		exit(0);
