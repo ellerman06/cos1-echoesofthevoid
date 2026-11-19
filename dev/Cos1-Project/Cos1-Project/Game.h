@@ -18,6 +18,7 @@ private:
 public:
 	void start();
 	void displayMainMenu();
+	void displayObjectives();
 
 	void intialPlanets();
 	void displayPlanets();

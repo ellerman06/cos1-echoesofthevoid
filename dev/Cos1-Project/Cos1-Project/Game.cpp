@@ -14,7 +14,7 @@ void Game::start()
 void Game::displayMainMenu()
 {
 	int choice = 0;
-	while (choice != 5)
+	while (choice != 7)
 	{
 		std::cout <<
 			"=====================================\n";
@@ -22,14 +22,19 @@ void Game::displayMainMenu()
 		std::cout <<
 			"=====================================\n";
 
-		std::cout << "Current Location: : " << currentLocation << "\n\n";
-		std::cout << "1. View Ship Status\n";
-		std::cout << "2. Travel\n";
-		std::cout << "3. Trade\n";
-		std::cout << "4. Repair Ship\n";
-		std::cout << "5. Save Game\n";
-		std::cout << "6. Load Game\n";
-		std::cout << "7. Exit\n";
+		std::cout << "Current Location: : " << currentPlanet->getName() << std::endl;
+		std::cout << "Credits: : " << playerShip.getCredits() << std::endl;
+		std::cout << "Fuel: : " << playerShip.getFuel() << std::endl;
+		std::cout << "Hull: : " << playerShip.getHull() << "\n\n";
+		
+		std::cout << "1. View Game Objectives\n";
+		std::cout << "2. View Ship Status\n";
+		std::cout << "3. Travel\n";
+		std::cout << "4. Trade\n";
+		std::cout << "5. Repair Ship\n";
+		std::cout << "6. Save Game\n";
+		std::cout << "7. Load Game\n";
+		std::cout << "8. Exit\n";
 		
 		std::string input;
 		std::cout << "\nChoice: ";
@@ -47,19 +52,19 @@ void Game::displayMainMenu()
 		switch (choice)
 		{
 		case 1:
-			playerShip.displayStatus();
+			displayObjectives();
 			break;
 		case 2:
-			  travel();
+			playerShip.displayStatus();
 			 break;
 		case 3:
-			trade();
+			travel();
 			break;
 		case 4:
-			  repairShip();
+			trade();
 			 break;
 		case 5:
-			
+			repairShip();
 			break;
 		case 6:
 			saveGame();
@@ -67,12 +72,45 @@ void Game::displayMainMenu()
 		case 7:
 			loadGame();
 			break;
+		case 8:
+			std::cout << "\nSafe Travels, Captain.\n";
+			break;
 		default: std::cout << "\nInvalid Choice\n";
 			break;
 		}
 		checkLoseCondition();
 		checkWinCondition();
 	}
+}
+
+void Game::displayObjectives()
+{
+	std::cout <<
+		"=====================================\n";
+	std::cout << "          ECHOES OF THE VOID\n";
+	std::cout << "OBJECTIVES\n";
+	std::cout <<
+		"=====================================\n";
+	std::cout << "\nMission Briefing:\n";
+	std::cout << "Travel across the galaxy, manage your\n";
+	std::cout << "resources, and build your fortune.\n";
+	std::cout << "\n===== WIN CONDITIONS =====\n";
+	std::cout << "Reach Nebula Statiion with 1000 Credits or more!\n";
+
+	std::cout << "\n===== LOSE CONDITIONS =====\n";
+	std::cout << "- Hull integrity reaches 0\n";
+	std::cout << "- Fuel reaches 0.\n";
+
+
+	std::cout << "\n===== TIPS =====\n";
+	std::cout << "- Travel carefully and monitor fuel.\n";
+	std::cout << "- Repair your ship after taking damage.\n";
+	std::cout << "- Use trading to earn and manage Credits.\n";
+	std::cout << "- Random events can help or hurt you.\n";\
+		std::cout <<
+		"\n=====================================\n";
+
+
 }
 
 void Game::intialPlanets()
@@ -231,6 +269,10 @@ void Game::checkWinCondition()
 		std::cout << "You reached Nebula Station.\n";
 		std::cout << "With 1000+ credits.\n\n";
 		std::cout << "Congratulations, Captain!";
+		std::cout << "\nYour legacy among the stars\n:";
+		std::cout << "\nwill be remembered.\n:";
+		std::cout << "\n=============================\n";
+
 		exit(0);
 
 	}
@@ -276,7 +318,6 @@ void Game::saveGame()
 void Game::loadGame()
 {
 	std::ifstream loadFile("savegame.txt");
-	return;
 	if (!loadFile)
 	{
 		std::cout << "\nNo save file found.\n";

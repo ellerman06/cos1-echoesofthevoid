@@ -6,5 +6,4 @@ class Event
 public: 
 	void triggerRandomEvent(Ship& ship);
 
-
 };

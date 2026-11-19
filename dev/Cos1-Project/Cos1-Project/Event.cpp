@@ -5,7 +5,7 @@
 
 void Event::triggerRandomEvent(Ship& ship)
 {
-	int randomEvent = rand() % 4;
+	int randomEvent = rand() % 7;
 	switch (randomEvent)
 	{
 		case 0:
@@ -26,6 +26,26 @@ void Event::triggerRandomEvent(Ship& ship)
 			ship.addCredits(100);
 			std::cout << "Credits +100\n";
 			break; 
+		case 4:
+
+
+
+			break;
+		case 5:
+
+
+
+			break;
+		case 6:
+
+
+
+			break;
+		case 7:
+
+
+
+			break;
     }
 
 }
