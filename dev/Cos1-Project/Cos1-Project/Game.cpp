@@ -8,6 +8,13 @@
 void Game::start()
 {
 	intialPlanets();
+	std::cout << "Welcome to Echoes of the Void.\n";
+	std::cout << "Please enter your name, Captain: ";
+	std::getline(std::cin, captainName);
+	std::cout <<
+		
+		"-----------------------------------------\n";
+	std::cout << "Greetings Captain" << " " << captainName << ", let's begin our journey through space!\n";
 	displayMainMenu();
 }
 
@@ -17,10 +24,10 @@ void Game::displayMainMenu()
 	while (choice != 7)
 	{
 		std::cout <<
-			"=====================================\n";
-		std::cout << "          ECHOES OF THE VOID\n";
+			"=======================================================\n";
+		std::cout << "         ECHOES OF THE VOID\n";
 		std::cout <<
-			"=====================================\n";
+			"=======================================================\n";
 
 		std::cout << "Current Location: : " << currentPlanet->getName() << std::endl;
 		std::cout << "Credits: : " << playerShip.getCredits() << std::endl;
@@ -117,6 +124,9 @@ void Game::intialPlanets()
 {
 	planets.push_back(Planet("Earth Station", 5, 10));
 	planets.push_back(Planet("Mars Colony", 3, 15));
+	planets.push_back(Planet("Lunar Gateway", 4, 8));
+	planets.push_back(Planet("Cygnus Reach", 8, 6));
+	planets.push_back(Planet("The Oracle", 6, 12));
 	planets.push_back(Planet("Titan Outpost", 7, 5));
 	planets.push_back(Planet("Nebula Station", 10, 20));
 
@@ -161,7 +171,7 @@ void Game::travel()
 	{
 		if (currentLocation == planets[destination - 1].getName())
 		{
-			std::cout << "\n You are already there, fuel is not cheap, Captain!\n";
+			std::cout << "\nYou are already there, fuel is not cheap, Captain!\n";
 			return;
 		}
 		currentPlanet = &planets[destination - 1];
@@ -199,7 +209,7 @@ void Game::repairShip()
 
 void Game::trade()
 {
-	const int fuelCost = 10; 
+	const int fuelCost = 10;
 	const int fuelAmount = 5;
 
 	std::cout << "\n======== SPACE PORT MARKET ========\n";
@@ -211,7 +221,7 @@ void Game::trade()
 	std::cout << "\n1. Buy Fuel?\n";
 	std::cout << "\n2. Leave Market!\n";
 
-	
+
 	int choice;
 	std::string input;
 	std::cout << "\nChoice: ";
@@ -232,6 +242,10 @@ void Game::trade()
 	switch (choice)
 	{
 	case 1:
+	{
+
+
+
 		if (playerShip.getFuel() == 100)
 		{
 			std::cout << "\nFuel tanks are already full.\n";
@@ -242,15 +256,40 @@ void Game::trade()
 			std::cout << "\nNot enough credits\n";
 			return;
 		}
-
-		playerShip.spendCredits(fuelCost);
-		playerShip.addFuel(fuelAmount);
+		int quantity;
+		std::cout << "\nYou can afford " << playerShip.getCredits() / fuelCost << " fuel pack.\n";
+		std::cout << "How many fuel packs would you like to buy? ";
+		std::getline(std::cin, input);
+		try
+		{
+			quantity = std::stoi(input);
+		}
+		catch (...)
+		{
+			std::cout << "\nInvalid amount.\n";
+			return;
+		}
+		if (quantity <= 0)
+		{
+			std::cout << "\n Please enter a positive number.\n";
+			return;
+		}
+		int totalCost = fuelCost * quantity;
+		int totalFuel = fuelAmount * quantity;
+		if (playerShip.getCredits() < totalCost)
+		{
+			std::cout << "\nNOt enough credits.\n";
+			return;
+		}
+		playerShip.spendCredits(totalCost);
+		playerShip.addFuel(totalFuel);
 
 		std::cout << "\nFuel purchased!\n";
-		std::cout << "Fuel +" << fuelAmount << std::endl;
-		std::cout << "Credits -" << fuelCost << std::endl;
+		std::cout << "Fuel +" << totalFuel << std::endl;
+		std::cout << "Credits -" << totalCost << std::endl;
 
 		break;
+	}
 	case 2:
 		std::cout << "\nLeaving market.\n";
 		break;
@@ -258,14 +297,13 @@ void Game::trade()
 		std::cout << "\nInvalid choice.\n";
 	}
 }
-
 void Game::checkWinCondition()
 {
 	if (currentLocation == "Nebula Station" && playerShip.getCredits() >= 1000)
 	{
-		std::cout << "\n=============================\n";
+		std::cout << "\n====================================\n";
 		std::cout << "                 VICTORY\n";
-		std::cout << "\n=============================\n";
+		std::cout << "\n====================================\n";
 		std::cout << "You reached Nebula Station.\n";
 		std::cout << "With 1000+ credits.\n\n";
 		std::cout << "Congratulations, Captain!";

@@ -14,7 +14,7 @@ private:
 	std::vector<Planet> planets; 
 	Planet* currentPlanet;
     std::string currentLocation; 
-
+	std::string captainName;
 public:
 	void start();
 	void displayMainMenu();
