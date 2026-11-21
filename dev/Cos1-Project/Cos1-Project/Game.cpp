@@ -14,20 +14,20 @@ void Game::start()
 	std::cout <<
 		
 		"-----------------------------------------\n";
-	std::cout << "Greetings Captain" << " " << captainName << ", let's begin our journey through space!\n";
+	std::cout << "Greetings Captain" << " " << captainName << ", let's begin our adventure through space!\n";
 	displayMainMenu();
 }
 
 void Game::displayMainMenu()
 {
 	int choice = 0;
-	while (choice != 7)
+	while (choice != 8)
 	{
 		std::cout <<
-			"=======================================================\n";
+			"==================================================\n";
 		std::cout << "         ECHOES OF THE VOID\n";
 		std::cout <<
-			"=======================================================\n";
+			"==================================================\n";
 
 		std::cout << "Current Location: : " << currentPlanet->getName() << std::endl;
 		std::cout << "Credits: : " << playerShip.getCredits() << std::endl;
@@ -80,7 +80,8 @@ void Game::displayMainMenu()
 			loadGame();
 			break;
 		case 8:
-			std::cout << "\nSafe Travels, Captain.\n";
+			std::cout << "\nUntil next time, Captain" << " " << captainName << "." << std::endl;
+
 			break;
 		default: std::cout << "\nInvalid Choice\n";
 			break;
@@ -95,14 +96,18 @@ void Game::displayObjectives()
 	std::cout <<
 		"=====================================\n";
 	std::cout << "          ECHOES OF THE VOID\n";
-	std::cout << "OBJECTIVES\n";
 	std::cout <<
 		"=====================================\n";
+
+	std::cout << "\n\n-------- OBJECTIVES ---------\n";
 	std::cout << "\nMission Briefing:\n";
 	std::cout << "Travel across the galaxy, manage your\n";
 	std::cout << "resources, and build your fortune.\n";
 	std::cout << "\n===== WIN CONDITIONS =====\n";
-	std::cout << "Reach Nebula Statiion with 1000 Credits or more!\n";
+	std::cout << "You must: \n";
+	std::cout << "- Reach Nebula Statiion\n";
+	std::cout << "AND\n";
+	std::cout << "- Accumilate at least 1000 credits\n";
 
 	std::cout << "\n===== LOSE CONDITIONS =====\n";
 	std::cout << "- Hull integrity reaches 0\n";
@@ -116,8 +121,9 @@ void Game::displayObjectives()
 	std::cout << "- Random events can help or hurt you.\n";\
 		std::cout <<
 		"\n=====================================\n";
-
-
+	std::cout << "\nPress Enter to return to the main menu...";
+	std::string temp;
+	std::getline(std::cin, temp);
 }
 
 void Game::intialPlanets()
@@ -278,7 +284,7 @@ void Game::trade()
 		int totalFuel = fuelAmount * quantity;
 		if (playerShip.getCredits() < totalCost)
 		{
-			std::cout << "\nNOt enough credits.\n";
+			std::cout << "\nNot enough credits.\n";
 			return;
 		}
 		playerShip.spendCredits(totalCost);

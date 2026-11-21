@@ -15,9 +15,6 @@ int main()
 	Game game;
 	game.start();
 
-	Planet mars("Mars Colony", 3, 15);  // test
-	mars.displayPlanetInfo();
-
 	return 0;
 
 }
