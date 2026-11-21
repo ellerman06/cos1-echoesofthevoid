@@ -47,48 +47,33 @@ Each week I will summarize my milestone activity and progress by writing a stand
 
 STAND UP
 What did you work on this past week?
-
 This week I finalized my project idea, Echoes of the Void, a space exploration game. I set up my GitHub repository, organized my project board with issues and milestones, and implemented the Ship class with fuel, hull, and credit tracking.
 
 What obstacles did you encounter, and how are you addressing them?
-
 The biggest challenge was determining the project's scope. I wanted to create something interesting without making it overly complex. Another challenge has been understanding exactly how much detail should be included in the README and documentation requirements. I am addressing them by going back and re-watching parts of our first lab and a bit of external research.
 
 What is something you learned, improved, or "leveled up" on this week?
+
 I gained experience using GitHub Issues and a project board to organize development tasks and track progress.
-
 What do you plan to prioritize before your next milestone?
-
 Before the next milestone, I plan to complete the main menu system and begin building the Game class that will control gameplay flow. I also plan to continue improving the README documentation so it reflects the project's design and progress.
 
 
 ## Week 2
 
  1. Progress Updat
-
 This week I continued developing my Echoes of the Void game. I completed the Ship, Planet, Event, and Game classes and implemented the main menu system.
-
 I am currently working on the Repair System, which will allow players to spend credits to repair hull damage caused by random events such as meteor strikes. Along the way, I encountered several bugs related to class design, function placement, and switch statements. I resolved these issues by separating responsibilities between classes and using debugging techniques to identify logic errors.
-
 Next, I plan to complete the Repair System and begin working on a Trading System that will allow players to purchase fuel using credits.
-
-
 
 2. Project Progress
 
 The most complete feature currently in my program is the Travel System.
-
 Players begin at Earth Station and can choose from multiple destinations, including Mars Colony, Titan Outpost, and Nebula Station. Events can reward the player with credits, reduce fuel, or damage the ship's hull.
 
-
-
 3. Usability Improvements
-
 One usability improvement I have focused on is providing clearer feedback to the player. Error messages also help guide the user, such as notifying them when they attempt to travel without enough fuel or select an invalid destination.
-
 This week I also improved menu navigation and added messages that explain why certain actions cannot be performed. As development continues, I plan to add more input validation and status warnings when fuel or hull integrity become critically low!
-
-
 
 4. Level Up Goal
 
