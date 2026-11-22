@@ -48,7 +48,13 @@ void Game::displayMainMenu()
 		std::getline(std::cin, input);
 		try
 		{
-			choice = std::stoi(input);
+			size_t pos;
+			choice = std::stoi(input, &pos);
+			if (pos != input.length())
+			{
+				std::cout << "\nInvalid Choice\n";
+					continue;
+			}
 		}
 		catch(...)
 		{
@@ -166,7 +172,13 @@ void Game::travel()
 
 	try
 	{
-		destination = std::stoi(input);
+		size_t pos;
+		destination = std::stoi(input, &pos);
+		if (pos != input.length())
+		{
+			std::cout << "\nInvalid destination.\n";
+			return;
+		}
 	}
 	catch (...)
 	{
@@ -263,12 +275,18 @@ void Game::trade()
 			return;
 		}
 		int quantity;
-		std::cout << "\nYou can afford " << playerShip.getCredits() / fuelCost << " fuel pack.\n";
+		std::cout << "\nYou can afford " << playerShip.getCredits() / fuelCost << " fuel packs.\n";
 		std::cout << "How many fuel packs would you like to buy? ";
 		std::getline(std::cin, input);
 		try
 		{
-			quantity = std::stoi(input);
+			size_t pos;
+			quantity = std::stoi(input, &pos);
+			if (pos != input.length())
+			{
+				std::cout << "\nInvalid amount.\n";
+				return;
+			}
 		}
 		catch (...)
 		{
@@ -280,6 +298,16 @@ void Game::trade()
 			std::cout << "\n Please enter a positive number.\n";
 			return;
 		}
+		int availableFuelSpace = 100 - playerShip.getFuel();
+		int maxPacks = availableFuelSpace / fuelAmount;
+
+		if (quantity > maxPacks)
+		{
+			std::cout << "\nYou don't have enough room in your fuel tanks.\n";
+			std::cout << "Maximum fuel packs available: " << maxPacks << std::endl; 
+			return;
+		}
+
 		int totalCost = fuelCost * quantity;
 		int totalFuel = fuelAmount * quantity;
 		if (playerShip.getCredits() < totalCost)
@@ -376,12 +404,36 @@ void Game::loadGame()
 	loadFile.ignore(); // skip leftover 
 
 	std::getline(loadFile, location);
+	bool validLocation = false; // valaidation
+	for (Planet& planet : planets)
+	{
+		if (planet.getName() == location)
+		{
+			validLocation = true;
+			break;
+		}
+	}
+	if (!validLocation)
+	{
+		std::cout << "\nInvalid save data.\n";
+		loadFile.close();
+		return;
+	}
 
 	playerShip.setFuel(fuel);
 	playerShip.setHull(hull);
 	playerShip.setCredits(credits);
 
 	currentLocation = location; 
+	for (Planet& planet : planets)
+	{
+		if (planet.getName() == currentLocation)
+		{
+			currentPlanet = &planet;
+			break;
+		}
+
+	}
 
 	loadFile.close();
 

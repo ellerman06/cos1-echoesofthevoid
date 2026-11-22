@@ -1,4 +1,4 @@
-70
-95
-400
-Earth Station
+85
+90
+500
+The Oracle
